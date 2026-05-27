@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mateo Piragüista - Instructor Oficial Barcelona</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background-color: #000080;
+    background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%231a1aff' fill-opacity='0.15'%3E%3Crect x='0' y='0' width='10' height='10'/%3E%3Crect x='10' y='10' width='10' height='10'/%3E%3C/g%3E%3C/svg%3E");
+    color: #ffff00;
+    font-family: 'VT323', monospace;
+    font-size: 18px;
+    min-height: 100vh;
+  }
+
+  .marquee-bar {
+    background: #ff0000;
+    color: #ffff00;
+    font-family: 'VT323', monospace;
+    font-size: 20px;
+    padding: 4px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    border-top: 3px solid #ffff00;
+    border-bottom: 3px solid #ffff00;
+  }
+
+  .marquee-inner {
+    display: inline-block;
+    animation: marquee 18s linear infinite;
+  }
+
+  @keyframes marquee {
+    0% { transform: translateX(100vw); }
+    100% { transform: translateX(-100%); }
+  }
+
+  .header {
+    text-align: center;
+    padding: 20px 10px;
+    background: linear-gradient(180deg, #000080 0%, #0000cc 100%);
+    border-bottom: 4px ridge #c0c0c0;
+  }
+
+  .site-title {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 22px;
+    color: #ffff00;
+    text-shadow: 3px 3px #ff0000, -1px -1px #00ffff;
+    line-height: 1.4;
+    animation: blink-title 2s step-end infinite;
+  }
+
+  @keyframes blink-title {
+    0%, 100% { text-shadow: 3px 3px #ff0000, -1px -1px #00ffff; }
+    50% { text-shadow: 3px 3px #ff6600, -1px -1px #ff00ff; }
+  }
+
+  .subtitle {
+    font-family: 'VT323', monospace;
+    font-size: 22px;
+    color: #00ffff;
+    margin-top: 8px;
+  }
+
+  .blink { animation: blink 1s step-end infinite; }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .hit-counter {
+    display: inline-block;
+    background: #000;
+    border: 2px inset #808080;
+    color: #00ff00;
+    font-family: 'VT323', monospace;
+    font-size: 20px;
+    padding: 2px 10px;
+    margin-top: 8px;
+    letter-spacing: 4px;
+  }
+
+  nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 10px;
+    background: #c0c0c0;
+    border-top: 2px solid #ffffff;
+    border-bottom: 2px solid #808080;
+  }
+
+  nav a {
+    background: #c0c0c0;
+    color: #000000;
+    text-decoration: none;
+    font-family: 'VT323', monospace;
+    font-size: 20px;
+    padding: 3px 14px;
+    border-top: 2px solid #ffffff;
+    border-left: 2px solid #ffffff;
+    border-bottom: 2px solid #808080;
+    border-right: 2px solid #808080;
+    cursor: pointer;
+    display: inline-block;
+  }
+
+  nav a:hover {
+    border-top: 2px solid #808080;
+    border-left: 2px solid #808080;
+    border-bottom: 2px solid #ffffff;
+    border-right: 2px solid #ffffff;
+    background: #d0d0d0;
+  }
+
+  .main-layout {
+    display: flex;
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .sidebar { width: 180px; flex-shrink: 0; }
+
+  .sidebar-box {
+    background: #000033;
+    border: 3px ridge #ffff00;
+    padding: 10px;
+    margin-bottom: 12px;
+    font-size: 16px;
+  }
+
+  .sidebar-title {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    color: #ff0000;
+    margin-bottom: 8px;
+    border-bottom: 1px dashed #ffff00;
+    padding-bottom: 4px;
+  }
+
+  .sidebar-box ul { list-style: none; color: #00ffff; }
+  .sidebar-box ul li::before { content: '► '; color: #ffff00; font-size: 12px; }
+  .sidebar-box ul li { margin-bottom: 4px; cursor: pointer; font-size: 17px; }
+  .sidebar-box ul li:hover { color: #ffff00; }
+
+  .main-content { flex: 1; min-width: 0; }
+
+  .welcome-box {
+    background: #000033;
+    border: 4px ridge #00ffff;
+    padding: 14px;
+    margin-bottom: 12px;
+  }
+
+  .welcome-box h2 {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 12px;
+    color: #ff6600;
+    margin-bottom: 10px;
+  }
+
+  .welcome-box p { color: #ffffff; line-height: 1.5; font-size: 18px; margin-bottom: 6px; }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .service-card {
+    background: #000033;
+    border: 3px ridge #ff6600;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .service-emoji { font-size: 32px; display: block; margin-bottom: 6px; }
+
+  .service-card h3 {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 9px;
+    color: #ffff00;
+    margin-bottom: 6px;
+  }
+
+  .service-card p { color: #c0c0c0; font-size: 16px; }
+
+  .guestbook {
+    background: #001100;
+    border: 3px ridge #00ff00;
+    padding: 12px;
+    margin-bottom: 12px;
+  }
+
+  .guestbook h2 {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    color: #00ff00;
+    margin-bottom: 10px;
+  }
+
+  .guestbook-entry {
+    border-bottom: 1px dashed #005500;
+    padding-bottom: 6px;
+    margin-bottom: 6px;
+    font-size: 16px;
+  }
+
+  .guestbook-entry .author { color: #00ff00; font-size: 17px; }
+  .guestbook-entry .msg { color: #aaffaa; }
+
+  .contact-box {
+    background: #110000;
+    border: 3px ridge #ff0000;
+    padding: 12px;
+  }
+
+  .contact-box h2 {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    color: #ff0000;
+    margin-bottom: 10px;
+  }
+
+  .contact-box p { color: #ffaaaa; font-size: 17px; margin-bottom: 6px; }
+  .email-link { color: #ffff00; text-decoration: underline; cursor: pointer; }
+
+  .footer {
+    text-align: center;
+    padding: 14px;
+    background: #000000;
+    border-top: 4px ridge #c0c0c0;
+    font-size: 15px;
+    color: #808080;
+  }
+
+  .footer .badges {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+
+  .badge {
+    background: #0000aa;
+    border: 2px outset #4444ff;
+    color: #ffff00;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 7px;
+    padding: 4px 6px;
+  }
+
+  .star-divider { color: #ffff00; text-align: center; letter-spacing: 8px; font-size: 20px; margin: 8px 0; }
+
+  .flames { font-size: 22px; animation: flicker 0.3s alternate infinite; }
+
+  @keyframes flicker {
+    0% { opacity: 1; }
+    100% { opacity: 0.7; }
+  }
+
+  .under-construction {
+    display: inline-block;
+    background: #ffff00;
+    color: #000000;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+    padding: 3px 8px;
+    border: 2px solid #ff8800;
+    animation: blink 0.7s step-end infinite;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  @media (max-width: 600px) {
+    .main-layout { flex-direction: column; }
+    .sidebar { width: 100%; }
+    .services-grid { grid-template-columns: 1fr; }
+    .site-title { font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="marquee-bar">
+  <span class="marquee-inner">
+    🛶 ¡BIENVENIDO A LA WEB OFICIAL DE MATEO PIRAGÜISTA! 🛶 &nbsp;&nbsp;&nbsp; ★ CLASES DE PIRAGUISMO EN BARCELONA ★ &nbsp;&nbsp;&nbsp; 🌊 ¡EL AGUA TE ESPERA! 🌊 &nbsp;&nbsp;&nbsp; ★ CURSOS PARA TODOS LOS NIVELES ★ &nbsp;&nbsp;&nbsp; 📧 ESCRÍBEME YA ★ &nbsp;&nbsp;&nbsp;
+  </span>
+</div>
+
+<div class="header">
+  <div class="flames">🔥🔥🔥</div>
+  <div class="site-title">MATEO<br>PIRAGÜISTA</div>
+  <div class="subtitle">~ Instructor Oficial de Piraguismo ~</div>
+  <div class="subtitle"><span class="blink">★</span> Barcelona, España <span class="blink">★</span></div>
+  <div class="hit-counter" id="counter">057483</div><br>
+  <small style="color:#c0c0c0; font-size:14px;">visitas desde 1998</small>
+</div>
+
+<nav>
+  <a href="#">[INICIO]</a>
+  <a href="#">[SOBRE MÍ]</a>
+  <a href="#">[CURSOS]</a>
+  <a href="#">[GALERÍA]</a>
+  <a href="#">[CONTACTO]</a>
+  <a href="#">[LINKS]</a>
+</nav>
+
+<div class="main-layout">
+
+  <div class="sidebar">
+    <div class="sidebar-box">
+      <div class="sidebar-title">MENÚ RÁPIDO</div>
+      <ul>
+        <li>🏆 Torneos</li>
+        <li>📅 Horarios</li>
+        <li>💰 Precios</li>
+        <li>📸 Fotos</li>
+        <li>📧 Email</li>
+      </ul>
+    </div>
+    <div class="sidebar-box">
+      <div class="sidebar-title">NIVEL DEL MAR</div>
+      <p style="color:#00ffff; font-size:17px;">🌊 Olas: <span style="color:#ffff00">1.2m</span></p>
+      <p style="color:#00ffff; font-size:17px;">💨 Viento: <span style="color:#ffff00">15km/h</span></p>
+      <p style="color:#00ffff; font-size:17px;">🌡️ Agua: <span style="color:#ffff00">18°C</span></p>
+      <p style="color:#ff6600; font-size:15px; margin-top:6px;">★ Buen día para remar ★</p>
+    </div>
+    <div class="sidebar-box">
+      <div class="sidebar-title">VISITA TAMBIÉN</div>
+      <ul>
+        <li>FKP España</li>
+        <li>Real Canoe</li>
+        <li>PaddleZone</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="main-content">
+
+    <div class="welcome-box">
+      <h2>★ BIENVENIDO ★</h2>
+      <p>¡Hola! Soy <span style="color:#ffff00">Mateo</span>, instructor oficial de piraguismo con más de 15 años de experiencia surcando las aguas de la costa catalana.</p>
+      <p>Si siempre has querido aprender a manejar una piragua, ¡has llegado al sitio correcto! Aquí encontrarás toda la info sobre mis cursos.</p>
+      <div class="star-divider">★ ★ ★</div>
+      <p style="color:#ff6600;">💡 <strong>NOVEDAD:</strong> ¡Ya disponibles los cursos de verano 2026! <span class="under-construction">¡NUEVO!</span></p>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="service-emoji">🛶</span>
+        <h3>INICIACIÓN</h3>
+        <p>Para los que nunca han remado. ¡Sin miedo!</p>
+      </div>
+      <div class="service-card">
+        <span class="service-emoji">🏆</span>
+        <h3>AVANZADO</h3>
+        <p>Técnica y velocidad para remar como los pros</p>
+      </div>
+      <div class="service-card">
+        <span class="service-emoji">👨‍👩‍👧</span>
+        <h3>FAMILIAS</h3>
+        <p>Actividades para toda la familia en el agua</p>
+      </div>
+      <div class="service-card">
+        <span class="service-emoji">🌊</span>
+        <h3>MAR ABIERTO</h3>
+        <p>Rutas por la costa barcelonesa <span class="under-construction">TOP</span></p>
+      </div>
+    </div>
+
+    <div class="guestbook">
+      <h2>📝 LIBRO DE VISITAS</h2>
+      <div class="guestbook-entry">
+        <span class="author">Sonia_BCN_1999:</span>
+        <span class="msg"> ¡Mateo es el mejor profe! Aprendí a remar en 3 días 🛶</span>
+      </div>
+      <div class="guestbook-entry">
+        <span class="author">PedroRoca:</span>
+        <span class="msg"> Genial la ruta por el Maresme. Lo mejor del año!</span>
+      </div>
+      <div class="guestbook-entry">
+        <span class="author">Familia_Gomez:</span>
+        <span class="msg"> Los niños fliparon. Volveremos seguro!! 😊</span>
+      </div>
+      <p style="color:#00ff00; font-size:15px; margin-top:8px; cursor:pointer;">[ Firma el libro de visitas ]</p>
+    </div>
+
+    <div class="contact-box">
+      <h2>📬 CONTACTO</h2>
+      <p>📧 Email: <span class="email-link">mateo@piragua-barcelona.net</span></p>
+      <p>📞 Tlf: <span style="color:#ffff00">666 123 456</span></p>
+      <p>📍 Club Nàutic de Barcelona</p>
+      <p style="color:#ff6600; font-size:15px; margin-top:8px;">⚠️ Respondo todos los emails en menos de 48h (si el módem no falla 😅)</p>
+    </div>
+
+  </div>
+</div>
+
+<div class="footer">
+  <p>© 1998-2026 Mateo Piragüista · Todos los derechos reservados</p>
+  <p style="margin-top:6px;">Optimizado para <span style="color:#ffff00">Netscape Navigator 4.0</span> · Resolución <span style="color:#ffff00">800x600</span></p>
+  <div class="badges">
+    <div class="badge">NETSCAPE</div>
+    <div class="badge">IE 5.0</div>
+    <div class="badge">NO AL SPAM</div>
+    <div class="badge">WEB SEGURA</div>
+    <div class="badge">HECHO A MANO</div>
+  </div>
+</div>
+
+<script>
+  let count = 57483;
+  setInterval(() => {
+    count++;
+    document.getElementById('counter').textContent = String(count).padStart(6, '0');
+  }, 3000);
+</script>
+
+</body>
+</html>
